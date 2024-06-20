@@ -30,8 +30,8 @@ jobs:
     - name: Upload packages
       uses: actions/upload-artifact@v4
       with:
-        name: docker_images.tar.gz
-        path: docker_images
+        name: docker_images
+        path: docker_images.tar.gz
         retention-days: 1  
 
     - name: Clean files
