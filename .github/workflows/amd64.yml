@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Pull Images and Package
-      run: 
+      run: |
         images="${{ github.event.inputs.docker_images }}"
         IFS=',' read -r -a image_array <<< "$images"
         for image in "${image_array[@]}"; do
@@ -35,5 +35,5 @@ jobs:
         retention-days: 1  
 
     - name: Clean files
-      run: 
+      run: |
         rm docker_images.tar.gz
