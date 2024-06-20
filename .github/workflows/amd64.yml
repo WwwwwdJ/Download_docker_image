@@ -41,4 +41,4 @@ jobs:
 
     - name: Clean up intermediate files
       run: |
-        rm image.tar
+        rm docker_images.tar.gz
