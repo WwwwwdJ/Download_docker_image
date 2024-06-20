@@ -1,4 +1,4 @@
-name: download_docker_images
+name: Download_docker_images
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
         required: true
 
 jobs:
-  VM Version:
+  Download_docker_images:
     runs-on: ubuntu-latest
 
     steps:
