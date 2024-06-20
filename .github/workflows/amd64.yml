@@ -1,4 +1,4 @@
-name: x86-64 Pull and Save Docker Image
+name: download_docker_images
 
 on:
   workflow_dispatch:
@@ -7,15 +7,15 @@ on:
         required: true
 
 jobs:
-  pull_and_package:
+  VM Version:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Pull Docker Images and Package
-      run: |
+    - name: Pull Images and Package
+      run: 
         images="${{ github.event.inputs.docker_images }}"
         IFS=',' read -r -a image_array <<< "$images"
         for image in "${image_array[@]}"; do
@@ -23,17 +23,17 @@ jobs:
           docker save "${image}" -o "${image//\//_}.tar"
         done
 
-    - name: Create tar.gz files
+    - name: Merge tar packages
       run: tar -czvf docker_images.tar.gz *.tar
   
 
-    - name: Upload artifact
+    - name: Upload packages
       uses: actions/upload-artifact@v4
       with:
         name: docker_images.tar.gz
         path: docker_images.tar.gz
         retention-days: 1  
 
-    - name: Clean up intermediate files
-      run: |
+    - name: Clean files
+      run: 
         rm docker_images.tar.gz
