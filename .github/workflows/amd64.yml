@@ -4,6 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       docker_images:
+        description: 
+          '多个镜像名称请用英文逗号分开
+           多个镜像下载后会将每个镜像单独保存成一个tar
+           再将多个tar合并保存成一个tar包'
         required: true
 
 jobs:
